@@ -6,29 +6,32 @@ window.addEventListener('load', function() {
   
 
   class Mandrake {
-    constructor(){
+    constructor(canvasWidth, canvasHeight){
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
         this.image = document.getElementById('mandrake');
         this.spriteWidth = 256;
         this.spriteHeight = 256;
         this.width = this.spriteWidth;
         this.height = this.spriteHeight;
-        this.x = 0;
-        this.y = 0;
+        this.x = this.canvasWidth/2;
+        this.y = this.canvasHeight/2;
         this.minFrame = 0;
         this.maxFrame = 355;
     }
     draw(context){
-context.drawImage(this.image, this.x, this.y, canvas.width, canvas.height);
+        context.drawImage(this.image, 6 * this.spriteWidth, 8 * this.spriteHeight, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
     update(){
 
     }
   }
-  const mandrake = new Mandrake();
+  const mandrake = new Mandrake(canvas.width, canvas.height);
 
   function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+   
     mandrake.draw(ctx);
-    requestAnimationFrame(animate);
+    
   }
+  animate();
 });
